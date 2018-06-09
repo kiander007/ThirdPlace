@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="twitter4j-appengine" />
+        <module name="twitter4j-async" />
+        <module name="twitter4j-core" />
+        <module name="twitter4j-examples" />
+        <module name="twitter4j-http2-support" />
+        <module name="twitter4j-media-support" />
+        <module name="twitter4j-stream" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="twitter4j" target="1.5" />
+      <module name="twitter4j-appengine" target="5" />
+      <module name="twitter4j-async" target="5" />
+      <module name="twitter4j-core" target="5" />
+      <module name="twitter4j-examples" target="8" />
+      <module name="twitter4j-http2-support" target="5" />
+      <module name="twitter4j-media-support" target="5" />
+      <module name="twitter4j-stream" target="5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

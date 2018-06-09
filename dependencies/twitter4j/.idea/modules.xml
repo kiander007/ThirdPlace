@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/twitter4j.iml" filepath="$PROJECT_DIR$/twitter4j.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-appengine/twitter4j-appengine.iml" filepath="$PROJECT_DIR$/twitter4j-appengine/twitter4j-appengine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-async/twitter4j-async.iml" filepath="$PROJECT_DIR$/twitter4j-async/twitter4j-async.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-core/twitter4j-core.iml" filepath="$PROJECT_DIR$/twitter4j-core/twitter4j-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-examples/twitter4j-examples.iml" filepath="$PROJECT_DIR$/twitter4j-examples/twitter4j-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-http2-support/twitter4j-http2-support.iml" filepath="$PROJECT_DIR$/twitter4j-http2-support/twitter4j-http2-support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-media-support/twitter4j-media-support.iml" filepath="$PROJECT_DIR$/twitter4j-media-support/twitter4j-media-support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter4j-stream/twitter4j-stream.iml" filepath="$PROJECT_DIR$/twitter4j-stream/twitter4j-stream.iml" />
+    </modules>
+  </component>
+</project>
