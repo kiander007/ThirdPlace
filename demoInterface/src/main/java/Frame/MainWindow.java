@@ -2,11 +2,14 @@ package Frame;
 
 import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+import jdk.net.SocketFlow;
+import twitter4j.Status;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.round;
 
@@ -14,8 +17,14 @@ public class MainWindow {
     private int HEIGHT = 720;
     private int WEIDTH = 1280;
     private static final int CANDIDATE_BUTTON_SIZE = 60;
-    private int nrCandidates = 50;
+    private int nrCandidates;
     private ArrayList<JButton> buttons;
+    private List<CompanyTweet> states;
+
+    public MainWindow(List<CompanyTweet> states){
+        this.states = states;
+        nrCandidates = states.size();
+    }
 
     public void addComponentsToPane(JFrame frame) {
 
@@ -44,24 +53,25 @@ public class MainWindow {
         buttons = new ArrayList<>();
         JButton newButton;
         for(int i = 0; i < nrCandidates; ++i) {
-            newButton = new JButton("<html>fnord<br />foo</html>\""); //new Integer(i).toString()
+            newButton = new JButton("<html>"+states.get(i).getCompanyName()+"<br />"+states.get(i).getStatus().getText()+"</html>\""); //new Integer(i).toString()
             newButton.setHorizontalAlignment(SwingConstants.LEFT);
             newButton.setPreferredSize(new Dimension(350, CANDIDATE_BUTTON_SIZE));
             //System.out.println(i/50.0*255);
-            newButton.setBackground(new Color((int)(i/50.0*255), 140+(int)(i/50.0*110), 225)); // 0 140 255 255 255 255
+            newButton.setBackground(new Color((int)(i/(double)nrCandidates*255), 140+(int)(i/(double)nrCandidates*110), 225)); // 0 140 255 255 255 255
 //            newButton.setBackground(new Color(0));
             buttons.add(newButton);
             list.add(newButton);
+            Status tweet = states.get(i).getStatus();
+            newButton.addActionListener(e ->{
+                browser.loadURL("http://twitter.com/"+tweet.getUser().getId()+"/status/"+tweet.getId());
+            });
         }
-
-
-
 
         JButton button = new JButton("Button 4 (LINE_START)");
         frame.add(button, BorderLayout.PAGE_START);
 
         frame.add(panel);
-
+        frame.add(new ToolBar(), BorderLayout.PAGE_START);
     }
 
     /**

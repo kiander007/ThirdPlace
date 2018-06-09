@@ -14,12 +14,12 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        //MainWindow main = new MainWindow();
-        //main.run();
-
         DBConnection db = new DBConnection();
         InitTwitter twit = new InitTwitter();
         Saver saver  = new Saver();
-        
+
+        List<CompanyTweet> statusses = saver.loadGraph("CompTweets1.sav");
+        MainWindow main = new MainWindow(statusses);
+        main.run();
     }
 }
