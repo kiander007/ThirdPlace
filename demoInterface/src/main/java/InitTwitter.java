@@ -22,26 +22,7 @@ public class InitTwitter {
         TwitterFactory tf = new TwitterFactory(cb.build());
 
         twitter = tf.getInstance();
-        /*
-        List<Status> statuses = null;
-        try {
-            statuses = twitter.getHomeTimeline();
-        }catch (TwitterException e){
-            System.out.println(" what happend?"+e);
-        }
-        System.out.println("Showing home timeline.");
-        for (Status status : statuses) {
-            System.out.println(status.getUser().getName() + ":" +
-                    status.getText());
-        }*/
 
-        //String user = "cnn";
-        //List<Status> statuses = getTweets(user,5);
-       // printTweets(statuses);
-        //sortByReTweets(statuses);
-        //printTweets(statuses);
-
-        //System.out.println("Total: "+statuses.size());
     }
 
     public List<CompanyTweet> getAllTweets(List<Company> compList, int amount){
