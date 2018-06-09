@@ -9,26 +9,23 @@ public class DBConnection {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ThirdPlace", "root", "root");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.11/ThirdPlace", "root", "root");
             Statement stmt = connection.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM `TABLE 1`");
+            resultSet = stmt.executeQuery("SELECT `Company name`,`Social media profiles` FROM `TABLE 1`WHERE `Social media types` LIKE '%Twitter%';");
 
         } catch(Exception e) {
 
             System.out.println(e);
 
         }
-
     }
 
-    public ArrayList<String> getUsers(){
-        ArrayList<String> users = new ArrayList<>();
+    public ArrayList<Company> getUsers(){
+        ArrayList<Company> users = new ArrayList<>();
         try {
             while(resultSet.next()){
-                if(resultSet.getString(15).contains("Twitter")){
-                    String end = resultSet.getString(16).substring(resultSet.getString(16).indexOf("twitter.com/")+12);
-                    users.add(end.substring(0, (!end.contains(",")) ? end.length() : end.indexOf(",")));
-                }
+                String end = resultSet.getString(2).substring(resultSet.getString(2).indexOf("twitter.com/")+12);
+                users.add(new Company(resultSet.getString(1), end.substring(0, (!end.contains(",")) ? end.length() : end.indexOf(","))));
             }
         } catch (SQLException e){
             System.out.println(e);

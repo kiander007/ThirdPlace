@@ -1,8 +1,10 @@
 
+import Frame.CompanyTweet;
 import  Frame.MainWindow;
+import twitter4j.Status;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.*;
 
 /**
  * This sample demonstrates how to create Browser instance,
@@ -11,6 +13,16 @@ import java.awt.*;
  */
 public class Main {
     public static void main(String[] args) {
-        new MainWindow().run();
+
+        //MainWindow main = new MainWindow();
+        //main.run();
+
+        DBConnection db = new DBConnection();
+        InitTwitter twit = new InitTwitter();
+        Saver saver  = new Saver();
+
+
+            //twit.sortByReTweets(statuses);
+            //twit.printTweets(statuses,200);
     }
 }
