@@ -1,15 +1,31 @@
 package Controller;
 
+import Frame.CompanyTweet;
+import Frame.MainWindow;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class RetweetAction extends AbstractAction {
-
-    public RetweetAction(String s){
+    private List<CompanyTweet> comp;
+    private MainWindow window;
+    public RetweetAction(String s, List<CompanyTweet> comp, MainWindow window){
         super(s);
+        this.comp = comp;
+        this.window =window;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("dank memes");
+        comp.sort((c1, c2) -> {
+            if(c1.getStatus().getRetweetCount() == c2.getStatus().getRetweetCount()){
+                return 0;
+            }
+            return c1.getStatus().getRetweetCount() > c2.getStatus().getRetweetCount() ? -1 : 1;
+        });
+        for (int i = 0; i< comp.size(); i++) {
+            System.out.println(comp.get(i).getStatus().getUser().getName() + ":" + comp.get(i).getStatus().getText() + "retweets: " + comp.get(i).getStatus().getRetweetCount());
+        }
+        window.updateButtons(comp);
     }
 }
