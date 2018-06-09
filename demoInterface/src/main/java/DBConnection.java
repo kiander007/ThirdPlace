@@ -9,7 +9,7 @@ public class DBConnection {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ThirdPlace", "root", "root");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.11/ThirdPlace", "root", "root");
             Statement stmt = connection.createStatement();
             resultSet = stmt.executeQuery("SELECT * FROM `TABLE 1`");
 
@@ -18,7 +18,6 @@ public class DBConnection {
             System.out.println(e);
 
         }
-
     }
 
     public ArrayList<String> getUsers(){
