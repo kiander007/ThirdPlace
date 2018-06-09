@@ -24,8 +24,8 @@ public class DBConnection {
         ArrayList<Company> users = new ArrayList<>();
         try {
             while(resultSet.next()){
-                String end = resultSet.getString(1).substring(resultSet.getString(1).indexOf("twitter.com/")+12);
-                users.add(new Company(resultSet.getString(0), end.substring(0, (!end.contains(",")) ? end.length() : end.indexOf(","))));
+                String end = resultSet.getString(2).substring(resultSet.getString(2).indexOf("twitter.com/")+12);
+                users.add(new Company(resultSet.getString(1), end.substring(0, (!end.contains(",")) ? end.length() : end.indexOf(","))));
             }
         } catch (SQLException e){
             System.out.println(e);
