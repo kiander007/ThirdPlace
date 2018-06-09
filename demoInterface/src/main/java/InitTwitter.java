@@ -45,7 +45,7 @@ public class InitTwitter {
 
         //System.out.println("Total: "+statuses.size());
     }
-
+    
     public List<Status> getTweets(String user,int amount){
         int pageno = 1;
         List<Status> statuses = new ArrayList();
