@@ -69,7 +69,61 @@ public class InitTwitter {
         }
     }
 
-    public void getPopularity(Status tweet){
-        
+    public void printTweets(List<Status> ls, int size){
+        for (int i = 0; i< size; i++) {
+            System.out.println(ls.get(i).getUser().getName() + ":" + ls.get(i).getText() + "retweets: " + ls.get(i).getRetweetCount());
+        }
+    }
+
+    public int getTotalTweets(List<Status> ls){
+        return ls.size();
+    }
+
+    public int getFollowers(String user){
+        try {
+            return twitter.getFollowersList(user, 500).size();
+        }catch (TwitterException e){
+            System.out.println("cannot get followers");
+        }
+        return 0;
+    }
+
+    public double getAverageRetweets(List<Status> ls){
+        long count = 0;
+        for (Status status: ls) {
+            count += status.getRetweetCount();
+        }
+        return count/ls.size();
+    }
+
+    public int getTopRetweets(List<Status> ls){
+        int top = 0;
+        for (Status status: ls) {
+            top = (top < status.getRetweetCount() ? status.getRetweetCount() : top);
+        }
+        return top;
+    }
+
+    public double getAverageFavorite(List<Status> ls){
+        long count = 0;
+        for (Status status: ls) {
+            count += status.getFavoriteCount();
+        }
+        return count/ls.size();
+    }
+
+    public int getTopFavorite(List<Status> ls){
+        int top = 0;
+        for (Status status: ls) {
+            top = (top < status.getFavoriteCount() ? status.getFavoriteCount() : top);
+        }
+        return top;
+    }
+
+    public int getPopularity(List<Status> ls,String user){
+        double averageFav = getAverageFavorite(ls);
+        double averageRetweet = getAverageRetweets(ls);
+        int followers = getFollowers(user);
+        return (int)(followers + averageFav + averageRetweet);
     }
 }
