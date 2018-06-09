@@ -1,4 +1,5 @@
 
+import Frame.CompanyTweet;
 import  Frame.MainWindow;
 import twitter4j.Status;
 
@@ -19,9 +20,8 @@ public class Main {
         DBConnection db = new DBConnection();
         InitTwitter twit = new InitTwitter();
 
-        for (String user: db.getUsers()) {
-            List<Status> statuses = twit.getTweets(user,100);
-            twit.printUserStats(statuses,user);
-        }
+            List<CompanyTweet> statuses = twit.getAllTweets(db.getUsers(),20);
+            twit.sortByReTweets(statuses);
+            twit.printTweets(statuses,200);
     }
 }

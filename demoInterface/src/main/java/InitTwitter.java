@@ -1,3 +1,4 @@
+import Frame.CompanyTweet;
 import twitter4j.*;
 
 import twitter4j.conf.ConfigurationBuilder;
@@ -42,22 +43,40 @@ public class InitTwitter {
 
         //System.out.println("Total: "+statuses.size());
     }
-    
-    public List<Status> getTweets(String user,int amount){
+
+    public List<CompanyTweet> getAllTweets(List<Company> compList, int amount){
+        List<CompanyTweet> resultList = new ArrayList();
+        System.out.println("initializing");
+        for (Company comp: compList) {
+            resultList.addAll(getTweets(comp,amount));
+        }
+        return resultList;
+    }
+
+    public List<CompanyTweet> getTweets(Company comp,int amount){
         int pageno = 1;
         List<Status> statuses = new ArrayList();
         //gets the first 100 tweets
         Paging page = new Paging(pageno, amount);
         try {
-        statuses.addAll(twitter.getUserTimeline(user, page));
+        statuses.addAll(twitter.getUserTimeline(comp.getTwitterName(), page));
         } catch(TwitterException e) {
             e.printStackTrace();
         }
-        return statuses;
+        List<CompanyTweet> result = new ArrayList();
+        for (Status s:statuses) {
+            result.add(new CompanyTweet(s,comp.getCompanyName()));
+        }
+        return result;
     }
 
-    public void sortByReTweets(List<Status> ls){
-        ls.sort(Comparator.comparing(Status::getRetweetCount).reversed());
+    public void sortByReTweets(List<CompanyTweet> ls){
+        ls.sort((c1, c2) -> {
+            if(c1.getStatus().getRetweetCount() == c1.getStatus().getRetweetCount()){
+                return 0;
+            }
+            return c1.getStatus().getRetweetCount() < c1.getStatus().getRetweetCount() ? -1 : 1;
+        });
     }
 
     public void printTweets(List<Status> ls){
@@ -66,9 +85,9 @@ public class InitTwitter {
         }
     }
 
-    public void printTweets(List<Status> ls, int size){
+    public void printTweets(List<CompanyTweet> ls, int size){
         for (int i = 0; i< size; i++) {
-            System.out.println(ls.get(i).getUser().getName() + ":" + ls.get(i).getText() + "retweets: " + ls.get(i).getRetweetCount());
+            System.out.println(ls.get(i).getStatus().getUser().getName() + ":" + ls.get(i).getStatus().getText() + "retweets: " + ls.get(i).getStatus().getRetweetCount());
         }
     }
 
