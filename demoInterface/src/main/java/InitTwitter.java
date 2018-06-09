@@ -62,12 +62,7 @@ public class InitTwitter {
     }
 
     public void sortByFav(List<CompanyTweet> ls){
-        ls.sort((c1, c2) -> {
-            if(c1.getStatus().getFavoriteCount() == c1.getStatus().getFavoriteCount()){
-                return 0;
-            }
-            return c1.getStatus().getFavoriteCount() < c1.getStatus().getFavoriteCount() ? -1 : 1;
-        });
+
     }
 
     public void printTweets(List<Status> ls){

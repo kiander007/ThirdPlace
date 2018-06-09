@@ -13,22 +13,34 @@ import java.util.List;
 
 import static java.lang.Math.round;
 
-public class MainWindow {
-    private int HEIGHT = 720;
-    private int WEIDTH = 1280;
+public class MainWindow extends JFrame{
     private static final int CANDIDATE_BUTTON_SIZE = 60;
     private int nrCandidates;
     private ArrayList<JButton> buttons;
     private List<CompanyTweet> states;
+    private Browser browser;
+    private JPanel list;
 
     public MainWindow(List<CompanyTweet> states){
         this.states = states;
         nrCandidates = states.size();
+
+        this.setTitle("Our Wonderful Program");
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+        this.setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
+         browser = new Browser();
+
+        addComponentsToPane();
     }
 
-    public void addComponentsToPane(JFrame frame) {
+    public void addComponentsToPane() {
 
-        Browser browser = new Browser();
+
         BrowserView view = new BrowserView(browser);
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -37,20 +49,40 @@ public class MainWindow {
         browser.loadURL("https://twitter.com");
 
 
-        JPanel list = new JPanel();
+        list = new JPanel();
         list.setPreferredSize(new Dimension(350, nrCandidates*CANDIDATE_BUTTON_SIZE));
 
         FlowLayout layout = new FlowLayout();
         layout.setVgap(0);
         list.setLayout(layout);
 
-
+        updateButtons(states);
         JScrollPane vertical = new JScrollPane(list);
         vertical.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        frame.add(vertical, BorderLayout.LINE_START);
+        this.add(vertical, BorderLayout.LINE_START);
 
-        buttons = new ArrayList<>();
+
+
+
+        JButton button = new JButton("Button 4 (LINE_START)");
+        this.add(button, BorderLayout.PAGE_START);
+
+        this.add(panel);
+        this.add(new ToolBar(states,this), BorderLayout.PAGE_START);
+    }
+
+    /**
+     * Create the GUI and show it.
+     */
+    private void createAndShowGUI() {
+
+        JFrame frame = new JFrame("MainWindow");
+
+    }
+
+    public void updateButtons(List<CompanyTweet> states){
+        list.removeAll();
         JButton newButton;
         for(int i = 0; i < nrCandidates; ++i) {
             String companyName = states.get(i).getCompanyName();
@@ -62,37 +94,15 @@ public class MainWindow {
             //System.out.println(i/50.0*255);
             newButton.setBackground(new Color((int)(i/(double)nrCandidates*255), 140+(int)(i/(double)nrCandidates*110), 225)); // 0 140 255 255 255 255
 //            newButton.setBackground(new Color(0));
-            buttons.add(newButton);
+
             list.add(newButton);
             Status tweet = states.get(i).getStatus();
             newButton.addActionListener(e ->{
                 browser.loadURL("http://twitter.com/"+tweet.getUser().getId()+"/status/"+tweet.getId());
             });
         }
-
-        JButton button = new JButton("Button 4 (LINE_START)");
-        frame.add(button, BorderLayout.PAGE_START);
-
-        frame.add(panel);
-        frame.add(new ToolBar(), BorderLayout.PAGE_START);
+        revalidate();
+        repaint();
     }
 
-    /**
-     * Create the GUI and show it.
-     */
-    private void createAndShowGUI() {
-
-        JFrame frame = new JFrame("MainWindow");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        addComponentsToPane(frame);
-
-        frame.setSize(1280, 720);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public void run() {
-        createAndShowGUI();
-    }
 }

@@ -20,6 +20,6 @@ public class Main {
 
         List<CompanyTweet> statusses = saver.loadGraph("CompTweets1.sav");
         MainWindow main = new MainWindow(statusses);
-        main.run();
+
     }
 }
