@@ -16,5 +16,6 @@
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-linux32:6.0" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-linux64:6.0" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-mac:6.0" level="project" />
+    <orderEntry type="library" name="twitter4j-async-4.0.4" level="project" />
   </component>
 </module>

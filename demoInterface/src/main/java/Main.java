@@ -12,7 +12,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        new DBConnection();
-
+        DBConnection db = new DBConnection();
+        new InitTwitter(db);
     }
 }
