@@ -21,6 +21,6 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        browser.loadURL("http://www.google.com");
+        browser.loadURL("https://www.facebook.com/groups/121294141228020/permalink/1928624887161594/");
     }
 }
