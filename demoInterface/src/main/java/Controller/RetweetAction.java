@@ -23,9 +23,6 @@ public class RetweetAction extends AbstractAction {
             }
             return c1.getStatus().getRetweetCount() > c2.getStatus().getRetweetCount() ? -1 : 1;
         });
-        for (int i = 0; i< comp.size(); i++) {
-            System.out.println(comp.get(i).getStatus().getUser().getName() + ":" + comp.get(i).getStatus().getText() + "retweets: " + comp.get(i).getStatus().getRetweetCount());
-        }
         window.updateButtons(comp);
     }
 }

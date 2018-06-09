@@ -19,14 +19,11 @@ public class LikeAction extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         comp.sort((c1, c2) -> {
-            if(c1.getStatus().getFavoriteCount() == c1.getStatus().getFavoriteCount()){
+            if(c1.getStatus().getFavoriteCount() == c2.getStatus().getFavoriteCount()){
                 return 0;
             }
-            return c1.getStatus().getFavoriteCount() < c1.getStatus().getFavoriteCount() ? -1 : 1;
+            return c1.getStatus().getFavoriteCount() > c2.getStatus().getFavoriteCount() ? -1 : 1;
         });
         window.updateButtons(comp);
-        for (int i = 0; i< comp.size(); i++) {
-            System.out.println(comp.get(i).getStatus().getUser().getName() + ":" + comp.get(i).getStatus().getText() + "retweets: " + comp.get(i).getStatus().getRetweetCount());
-        }
     }
 }
