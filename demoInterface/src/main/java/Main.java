@@ -20,9 +20,6 @@ public class Main {
         DBConnection db = new DBConnection();
         InitTwitter twit = new InitTwitter();
         Saver saver  = new Saver();
-
-        List<CompanyTweet> statuses = saver.loadGraph("CompTweets1.sav");
-        twit.sortByReTweets(statuses);
-        twit.printTweets(statuses,200);
+        
     }
 }
