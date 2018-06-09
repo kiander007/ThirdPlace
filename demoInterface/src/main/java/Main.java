@@ -11,15 +11,6 @@ import java.awt.*;
  */
 public class Main {
     public static void main(String[] args) {
-
-        MainWindow main = new MainWindow();
-        main.run();
-
-        DBConnection db = new DBConnection();
-        InitTwitter twit = new InitTwitter();
-
-        for (String user: db.getUsers()) {
-            twit.getTweets(user,2);
-        }
+        new MainWindow().run();
     }
 }
