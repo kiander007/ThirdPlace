@@ -87,7 +87,7 @@ public class MainWindow extends JFrame{
         for(int i = 0; i < nrCandidates; ++i) {
             String companyName = states.get(i).getCompanyName();
             String companyTwit = states.get(i).getStatus().getText();
-            newButton = new JButton("<html>"+ ((companyName.length() > 20) ? (companyName.substring(0,  17) + "...") : companyName) +
+            newButton = new JButton("<html>"+ ((companyName.length() > 37) ? (companyName.substring(0,  34) + "...") : companyName) +
                     "<br />"+ (companyTwit.length() > 40 ? (companyTwit.substring(0, 37) + "...") : companyTwit) +"</html>\""); //new Integer(i).toString()
             newButton.setHorizontalAlignment(SwingConstants.LEFT);
             newButton.setPreferredSize(new Dimension(350, CANDIDATE_BUTTON_SIZE));

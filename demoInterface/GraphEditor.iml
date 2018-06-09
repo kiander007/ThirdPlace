@@ -10,7 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
-    <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-cross-platform:6.0" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-win:6.0" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser:6.0" level="project" />
     <orderEntry type="library" name="Maven: com.teamdev.jxbrowser:jxbrowser-linux32:6.0" level="project" />
