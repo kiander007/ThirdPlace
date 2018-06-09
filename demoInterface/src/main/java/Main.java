@@ -21,8 +21,8 @@ public class Main {
         InitTwitter twit = new InitTwitter();
         Saver saver  = new Saver();
 
-
-            //twit.sortByReTweets(statuses);
-            //twit.printTweets(statuses,200);
+        List<CompanyTweet> statuses = saver.loadGraph("CompTweets1.sav");
+        twit.sortByReTweets(statuses);
+        twit.printTweets(statuses,200);
     }
 }
