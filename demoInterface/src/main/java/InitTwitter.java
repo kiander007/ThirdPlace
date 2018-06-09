@@ -12,10 +12,8 @@ import java.util.List;
 public class InitTwitter {
 
     private Twitter twitter;
-    private DBConnection db;
 
-    public InitTwitter(DBConnection db) {
-        this.db = db;
+    public InitTwitter() {
         
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
@@ -39,20 +37,20 @@ public class InitTwitter {
                     status.getText());
         }*/
 
-        String user = "cnn";
-        List<Status> statuses = getTweets(user);
-        printTweets(statuses);
-        sortByReTweets(statuses);
-        printTweets(statuses);
+        //String user = "cnn";
+        //List<Status> statuses = getTweets(user,5);
+       // printTweets(statuses);
+        //sortByReTweets(statuses);
+        //printTweets(statuses);
 
-        System.out.println("Total: "+statuses.size());
+        //System.out.println("Total: "+statuses.size());
     }
 
-    public List<Status> getTweets(String user){
+    public List<Status> getTweets(String user,int amount){
         int pageno = 1;
         List<Status> statuses = new ArrayList();
         //gets the first 100 tweets
-        Paging page = new Paging(pageno, 100);
+        Paging page = new Paging(pageno, amount);
         try {
         statuses.addAll(twitter.getUserTimeline(user, page));
         } catch(TwitterException e) {

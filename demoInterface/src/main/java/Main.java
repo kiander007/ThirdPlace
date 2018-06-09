@@ -13,6 +13,10 @@ public class Main {
     public static void main(String[] args) {
 
         DBConnection db = new DBConnection();
-        new InitTwitter(db);
+        InitTwitter twit = new InitTwitter();
+
+        for (String user: db.getUsers()) {
+            twit.getTweets(user,2);
+        }
     }
 }
