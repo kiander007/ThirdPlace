@@ -17,7 +17,7 @@ public class InitTwitter {
                 .setOAuthAccessTokenSecret("j8wayWvkctCIG9NXPyzBjtjwf1td8K3bayxcDFpGhErQ0");
         TwitterFactory tf = new TwitterFactory(cb.build());
 
-        Twitter twitter = TwitterFactory.getSingleton();
+        Twitter twitter = tf.getInstance();
         List<Status> statuses = null;
         try {
             statuses = twitter.getHomeTimeline();
