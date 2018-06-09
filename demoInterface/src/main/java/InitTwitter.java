@@ -22,33 +22,14 @@ public class InitTwitter {
         TwitterFactory tf = new TwitterFactory(cb.build());
 
         twitter = tf.getInstance();
-        /*
-        List<Status> statuses = null;
-        try {
-            statuses = twitter.getHomeTimeline();
-        }catch (TwitterException e){
-            System.out.println(" what happend?"+e);
-        }
-        System.out.println("Showing home timeline.");
-        for (Status status : statuses) {
-            System.out.println(status.getUser().getName() + ":" +
-                    status.getText());
-        }*/
 
-        //String user = "cnn";
-        //List<Status> statuses = getTweets(user,5);
-       // printTweets(statuses);
-        //sortByReTweets(statuses);
-        //printTweets(statuses);
-
-        //System.out.println("Total: "+statuses.size());
     }
 
-    public List<CompanyTweet> getAllTweets(List<Company> compList, int amount){
+    public List<CompanyTweet> getAllTweets(List<Company> compList, int beginComp,int endComp, int amountTweet){
         List<CompanyTweet> resultList = new ArrayList();
         System.out.println("initializing");
-        for (Company comp: compList) {
-            resultList.addAll(getTweets(comp,amount));
+        for (int i = beginComp; i < endComp; i++) {
+            resultList.addAll(getTweets(compList.get(i),amountTweet));
         }
         return resultList;
     }
@@ -59,6 +40,7 @@ public class InitTwitter {
         //gets the first 100 tweets
         Paging page = new Paging(pageno, amount);
         try {
+            System.out.println(comp.getTwitterName());
         statuses.addAll(twitter.getUserTimeline(comp.getTwitterName(), page));
         } catch(TwitterException e) {
             e.printStackTrace();
@@ -76,6 +58,15 @@ public class InitTwitter {
                 return 0;
             }
             return c1.getStatus().getRetweetCount() < c1.getStatus().getRetweetCount() ? -1 : 1;
+        });
+    }
+
+    public void sortByFav(List<CompanyTweet> ls){
+        ls.sort((c1, c2) -> {
+            if(c1.getStatus().getFavoriteCount() == c1.getStatus().getFavoriteCount()){
+                return 0;
+            }
+            return c1.getStatus().getFavoriteCount() < c1.getStatus().getFavoriteCount() ? -1 : 1;
         });
     }
 

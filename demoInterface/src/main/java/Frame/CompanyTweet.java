@@ -2,7 +2,9 @@ package Frame;
 
 import twitter4j.Status;
 
-public class CompanyTweet {
+import java.io.Serializable;
+
+public class CompanyTweet implements Serializable {
     Status status;
     String companyName;
 
