@@ -11,6 +11,8 @@ import java.awt.*;
  */
 public class Main {
     public static void main(String[] args) {
+        new InitTwitter();
+        /*
         Browser browser = new Browser();
         BrowserView browserView = new BrowserView(browser);
 
@@ -22,5 +24,6 @@ public class Main {
         frame.setVisible(true);
 
         browser.loadURL("https://www.facebook.com/groups/121294141228020/permalink/1928624887161594/");
+        */
     }
 }

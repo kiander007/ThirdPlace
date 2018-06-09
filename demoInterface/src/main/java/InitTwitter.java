@@ -1,51 +1,33 @@
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class InitTwitter {
     public InitTwitter() {
-        Twitter twitter = new TwitterFactory().getInstance();
-        twitter.setOAuthConsumer("", "");
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey("3cH0GU7iKaWppFU789HkwbauE")
+                .setOAuthConsumerSecret("SacFfPGqtBX6XZvsVTczpDKAcp8Ntk7T3djm6ta0BaiAStaml1")
+                .setOAuthAccessToken("1005405587637768193-HECucYVnPfo0jTE2jI9wGUQpt7QcjE")
+                .setOAuthAccessTokenSecret("j8wayWvkctCIG9NXPyzBjtjwf1td8K3bayxcDFpGhErQ0");
+        TwitterFactory tf = new TwitterFactory(cb.build());
 
-        RequestToken requestToken = twitter.getOAuthRequestToken();
-        System.out.println("Authorization URL: \n"
-                + requestToken.getAuthorizationURL());
-
-        AccessToken accessToken = null;
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        Twitter twitter = TwitterFactory.getSingleton();
+        List<Status> statuses = null;
         try {
-            System.out.print("Hit above Authorization URL and Input PIN here: ");
-            String pin = br.readLine();
-
-            accessToken = twitter.getOAuthAccessToken(requestToken, pin);
-
-        } catch (TwitterException te) {
-
-            System.out.println("Failed to get access token, caused by: "
-                    + te.getMessage());
+            statuses = twitter.getHomeTimeline();
+        }catch (TwitterException e){
+            System.out.println(" what happend?"+e);
         }
-
-        System.out.println("Access Token: " + accessToken.getToken());
-        System.out.println("Access Token Secret: "
-                + accessToken.getTokenSecret());
-
-        // updating twitter status
-        twitter.updateStatus("hi.. im updating this using Namex Tweet for Demo");
-
-        System.out.println("\nReading Twitter Timeline:");
-
-        // I'm reading your timeline
-        ResponseList<Status> list = twitter.getHomeTimeline();
-        for (Status each : list) {
-
-            System.out.println("Sent by: @" + each.getUser().getScreenName()
-                    + " - " + each.getUser().getName() + "\n" + each.getText()
-                    + "\n");
+        System.out.println("Showing home timeline.");
+        for (Status status : statuses) {
+            System.out.println(status.getUser().getName() + ":" +
+                    status.getText());
         }
     }
 }
