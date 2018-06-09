@@ -85,7 +85,10 @@ public class MainWindow extends JFrame{
         list.removeAll();
         JButton newButton;
         for(int i = 0; i < nrCandidates; ++i) {
-            newButton = new JButton("<html>"+states.get(i).getCompanyName()+"<br />"+states.get(i).getStatus().getText()+"</html>\""); //new Integer(i).toString()
+            String companyName = states.get(i).getCompanyName();
+            String companyTwit = states.get(i).getStatus().getText();
+            newButton = new JButton("<html>"+ ((companyName.length() > 20) ? (companyName.substring(0,  17) + "...") : companyName) +
+                    "<br />"+ (companyTwit.length() > 40 ? (companyTwit.substring(0, 37) + "...") : companyTwit) +"</html>\""); //new Integer(i).toString()
             newButton.setHorizontalAlignment(SwingConstants.LEFT);
             newButton.setPreferredSize(new Dimension(350, CANDIDATE_BUTTON_SIZE));
             //System.out.println(i/50.0*255);
