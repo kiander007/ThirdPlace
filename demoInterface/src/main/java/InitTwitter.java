@@ -75,13 +75,23 @@ public class InitTwitter {
         }
     }
 
+    public void printUserStats(List<Status> ls, String user){
+        System.out.println("twitter account of: "+user);
+        System.out.println("followers: "+getFollowers(user));
+        System.out.println("total tweets: "+getTotalTweets(ls));
+        //TODO change this
+        System.out.println("popularity: "+getAverageFavorite(ls));
+    }
+
     public int getTotalTweets(List<Status> ls){
         return ls.size();
     }
 
-    public int getFollowers(String user){
+    public int getFollowers(String name){
+        //TODO fix this
         try {
-            return twitter.getFollowersList(user, 500).size();
+            User user = twitter.showUser(name);
+            return user.getFollowersCount();
         }catch (TwitterException e){
             System.out.println("cannot get followers");
         }
@@ -90,6 +100,8 @@ public class InitTwitter {
 
     public double getAverageRetweets(List<Status> ls){
         long count = 0;
+        if(ls.size() == 0)
+            return 0;
         for (Status status: ls) {
             count += status.getRetweetCount();
         }
@@ -106,6 +118,8 @@ public class InitTwitter {
 
     public double getAverageFavorite(List<Status> ls){
         long count = 0;
+        if(ls.size() == 0)
+            return 0;
         for (Status status: ls) {
             count += status.getFavoriteCount();
         }

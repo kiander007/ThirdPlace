@@ -20,9 +20,8 @@ public class Main {
         InitTwitter twit = new InitTwitter();
 
         for (String user: db.getUsers()) {
-            List<Status> statuses = twit.getTweets(user,50);
-            twit.sortByReTweets(statuses);
-            twit.printTweets(statuses);
+            List<Status> statuses = twit.getTweets(user,100);
+            twit.printUserStats(statuses,user);
         }
     }
 }
