@@ -19,9 +19,10 @@ public class Main {
 
         DBConnection db = new DBConnection();
         InitTwitter twit = new InitTwitter();
+        Saver saver  = new Saver();
 
-            List<CompanyTweet> statuses = twit.getAllTweets(db.getUsers(),20);
-            twit.sortByReTweets(statuses);
-            twit.printTweets(statuses,200);
+
+            //twit.sortByReTweets(statuses);
+            //twit.printTweets(statuses,200);
     }
 }

@@ -25,11 +25,11 @@ public class InitTwitter {
 
     }
 
-    public List<CompanyTweet> getAllTweets(List<Company> compList, int amount){
+    public List<CompanyTweet> getAllTweets(List<Company> compList, int beginComp,int endComp, int amountTweet){
         List<CompanyTweet> resultList = new ArrayList();
         System.out.println("initializing");
-        for (Company comp: compList) {
-            resultList.addAll(getTweets(comp,amount));
+        for (int i = beginComp; i < endComp; i++) {
+            resultList.addAll(getTweets(compList.get(i),amountTweet));
         }
         return resultList;
     }
@@ -40,6 +40,7 @@ public class InitTwitter {
         //gets the first 100 tweets
         Paging page = new Paging(pageno, amount);
         try {
+            System.out.println(comp.getTwitterName());
         statuses.addAll(twitter.getUserTimeline(comp.getTwitterName(), page));
         } catch(TwitterException e) {
             e.printStackTrace();
