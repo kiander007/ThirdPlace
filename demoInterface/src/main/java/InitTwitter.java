@@ -68,4 +68,8 @@ public class InitTwitter {
             System.out.println(s.getUser().getName() + ":" + s.getText() + "retweets: " + s.getRetweetCount());
         }
     }
+
+    public void getPopularity(Status tweet){
+        
+    }
 }
