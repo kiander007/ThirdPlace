@@ -49,7 +49,12 @@
             </plugin>
         </plugins>
     </reporting>
-
+    <repositories>
+        <repository>
+            <id>com.teamdev</id>
+            <url>http://maven.teamdev.com/repository/products</url>
+        </repository>
+    </repositories>
     <!-- Dependencies -->
     <dependencies>
         <!-- JUnit unit testing framework -->
