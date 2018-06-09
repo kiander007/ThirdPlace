@@ -19,10 +19,10 @@ public class Main {
         DBConnection db = new DBConnection();
         InitTwitter twit = new InitTwitter();
 
-        //for (String user: db.getUsers()) {
-            List<Status> statuses = twit.getTweets("cnn",50);
+        for (String user: db.getUsers()) {
+            List<Status> statuses = twit.getTweets(user,50);
             twit.sortByReTweets(statuses);
             twit.printTweets(statuses);
-        //}
+        }
     }
 }
