@@ -5,9 +5,14 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class InitTwitter {
+
+    Twitter twitter;
+
     public InitTwitter() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
@@ -17,7 +22,8 @@ public class InitTwitter {
                 .setOAuthAccessTokenSecret("j8wayWvkctCIG9NXPyzBjtjwf1td8K3bayxcDFpGhErQ0");
         TwitterFactory tf = new TwitterFactory(cb.build());
 
-        Twitter twitter = tf.getInstance();
+        twitter = tf.getInstance();
+        /*
         List<Status> statuses = null;
         try {
             statuses = twitter.getHomeTimeline();
@@ -28,6 +34,37 @@ public class InitTwitter {
         for (Status status : statuses) {
             System.out.println(status.getUser().getName() + ":" +
                     status.getText());
+        }*/
+
+        String user = "cnn";
+        List<Status> statuses = getTweets(user);
+        printTweets(statuses);
+        sortByReTweets(statuses);
+        printTweets(statuses);
+
+        System.out.println("Total: "+statuses.size());
+    }
+
+    public List<Status> getTweets(String user){
+        int pageno = 1;
+        List<Status> statuses = new ArrayList();
+        //gets the first 100 tweets
+        Paging page = new Paging(pageno, 100);
+        try {
+        statuses.addAll(twitter.getUserTimeline(user, page));
+        } catch(TwitterException e) {
+            e.printStackTrace();
+        }
+        return statuses;
+    }
+
+    public void sortByReTweets(List<Status> ls){
+        ls.sort(Comparator.comparing(Status::getRetweetCount).reversed());
+    }
+
+    public void printTweets(List<Status> ls){
+        for (Status s:ls) {
+            System.out.println(s.getUser().getName() + ":" + s.getText() + "retweets: " + s.getRetweetCount());
         }
     }
 }
